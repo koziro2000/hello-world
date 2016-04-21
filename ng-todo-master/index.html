@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body ng-controller='todoCtrl'>
+<body ng-controller='todoCtrl' height='500' width='300'>
     <div class='container'>
 
         <div class='row'>
@@ -30,6 +30,7 @@
                 <span class='todo-content'>{{todo.startDt}}</span>
                 <span class='todo-content'>{{todo.endDt}}</span>
                 <span class='todo-content'>{{todo.createdAt}}</span>
+                <input type='button' value="Edit" ng-click='edit(todo)'/>
                 <a class='btn-remove-todo pull-right' ng-click='remove(todo)'><i class='glyphicon glyphicon-remove'></i> </a>
             </div>
         </div>

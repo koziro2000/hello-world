@@ -14,11 +14,12 @@ angular.module('app').controller('todoCtrl', function ($scope, todoStorage) {
     });
 
     $scope.save = function() {
-        todoStorage.save($scope.newContent, $scope.newContentStartDt, $scope.newContentEndDt);   
+        todoStorage.save($scope.taskId, $scope.newContent, $scope.newContentStartDt, $scope.newContentEndDt);   
         console.log($scope.netContent + ' ' + $scope.newContentStartDt + ' ' +$scope.newContentEndDt);
         $scope.newContent = '';
         $scope.newContentStartDt = '';
         $scope.newContentEndDt = '';
+        $scope.taskId = '';
         
     }
 
@@ -32,6 +33,13 @@ angular.module('app').controller('todoCtrl', function ($scope, todoStorage) {
 
     $scope.toggleCompleted = function() {
         todoStorage.sync();
+    }
+    
+    $scope.edit = function(todo) {
+        $scope.taskId = todo.id;
+        $scope.newContent = todo.content;
+        $scope.newContentStartDt = todo.startDt;
+        $scope.newContentEndDt = todo.endDt;
     }
 
 });

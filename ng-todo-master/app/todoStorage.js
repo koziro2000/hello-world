@@ -21,7 +21,7 @@ angular.module('app').service('todoStorage', function ($q) {
         });
     }
 
-    this.save = function (newContent, newStartDt, newEndDt) {
+    this.save = function (taskId, newContent, newStartDt, newEndDt) {
         var id = this.data.length + 1;
         var todo = {
             id: id,
