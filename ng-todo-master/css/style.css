@@ -1,5 +1,6 @@
 body {
-    width: 320px;
+    width: 400px;
+    height: 500px;
 }
 
 .todo-item .btn-remove-todo {
