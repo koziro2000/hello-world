@@ -13,14 +13,12 @@ angular.module('app').controller('todoCtrl', function ($scope, todoStorage) {
         $scope.$apply();
     });
 
-    $scope.save = function() {
-        todoStorage.save($scope.taskId, $scope.newContent, $scope.newContentStartDt, $scope.newContentEndDt);   
-        console.log($scope.netContent + ' ' + $scope.newContentStartDt + ' ' +$scope.newContentEndDt);
+    $scope.save = function() {        
+        todoStorage.save($scope.taskId, $scope.newContent, $scope.newContentStartDt.toDateString(), $scope.newContentEndDt.toDateString());
         $scope.newContent = '';
-        $scope.newContentStartDt = '';
-        $scope.newContentEndDt = '';
+        $scope.newContentStartDt = new Date();
+        $scope.newContentEndDt = new Date();
         $scope.taskId = '';
-        
     }
 
     $scope.remove = function(todo) {
