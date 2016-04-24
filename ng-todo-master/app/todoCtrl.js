@@ -14,10 +14,10 @@ angular.module('app').controller('todoCtrl', function ($scope, todoStorage) {
     });
 
     $scope.save = function() {        
-        todoStorage.save($scope.taskId, $scope.newContent, $scope.newContentStartDt.toDateString(), $scope.newContentEndDt.toDateString());
+        todoStorage.save($scope.taskId, $scope.newContent, $scope.newContentStartDt, $scope.newContentEndDt);
         $scope.newContent = '';
-        $scope.newContentStartDt = new Date();
-        $scope.newContentEndDt = new Date();
+        $scope.newContentStartDt = '';
+        $scope.newContentEndDt = '';
         $scope.taskId = '';
     }
 
