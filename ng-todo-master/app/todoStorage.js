@@ -21,7 +21,7 @@ angular.module('app').service('todoStorage', function ($q) {
         });
     }
 
-    this.save = function (taskId, newContent, newStartDt, newEndDt) {
+    this.save = function (taskId, newContent, newStartDt, newEndDt, status) {
         var id = this.data.length + 1;
         var todo = {
             id: id,
@@ -29,7 +29,8 @@ angular.module('app').service('todoStorage', function ($q) {
             startDt: newStartDt,
             endDt: newEndDt,
             completed: false,
-            createdAt: new Date()
+            createdAt: new Date(),
+            status: status
         };
         this.data.push(todo);
         this.sync();

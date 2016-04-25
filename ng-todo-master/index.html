@@ -32,8 +32,12 @@
                 <span class='todo-content'>{{todo.content}}</span>
                 <span class='todo-content'>{{todo.startDt}}</span>
                 <span class='todo-content'>{{todo.endDt}}</span>
+                <span class='todo-content'>{{todo.status}}</span>
                 <span class='todo-content'>{{todo.createdAt}}</span>
                 <input type='button' value="Edit" ng-click='edit(todo)'/>
+                <input type='button' value="Start" ng-click='startTask(todo)'/>
+                <input type='button' value="Pause" ng-click='pauseTask(todo)'/>
+                
                 <a class='btn-remove-todo pull-right' ng-click='remove(todo)'><i class='glyphicon glyphicon-remove'></i> </a>
             </div>
         </div>

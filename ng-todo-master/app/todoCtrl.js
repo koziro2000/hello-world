@@ -13,12 +13,21 @@ angular.module('app').controller('todoCtrl', function ($scope, todoStorage) {
         $scope.$apply();
     });
 
-    $scope.save = function() {        
-        todoStorage.save($scope.taskId, $scope.newContent, $scope.newContentStartDt, $scope.newContentEndDt);
+    $scope.save = function() {
+        var status = 'open';
+        
+        if (($scope.taskId !== undefined) && ($scope.taskId != '')) {
+            status = 'pause';
+        }
+        
+        
+        
+        todoStorage.save($scope.taskId, $scope.newContent, $scope.newContentStartDt, $scope.newContentEndDt, status);
         $scope.newContent = '';
         $scope.newContentStartDt = '';
         $scope.newContentEndDt = '';
         $scope.taskId = '';
+        $scope.status = '';
     }
 
     $scope.remove = function(todo) {
@@ -38,6 +47,15 @@ angular.module('app').controller('todoCtrl', function ($scope, todoStorage) {
         $scope.newContent = todo.content;
         $scope.newContentStartDt = todo.startDt;
         $scope.newContentEndDt = todo.endDt;
+    }
+    
+    $scope.startTask = function(todo) {
+        //This is to change status to stared!
+        todo.status='start';
+    }
+    
+    $scope.pauseTask = function(todo) {
+        todo.status='pause';
     }
 
 });
