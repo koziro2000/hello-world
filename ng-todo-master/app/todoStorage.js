@@ -44,7 +44,7 @@ angular.module('app').service('todoStorage', function ($q) {
                 startDt: newStartDt,
                 endDt: newEndDt,
                 completed: false,
-                createdAt: new Date(),
+                createdAt: new Date().toUTCString(),
                 status: status
             };
             this.data.push(todo);

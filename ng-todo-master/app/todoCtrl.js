@@ -38,7 +38,9 @@ angular.module('app').controller('todoCtrl', function ($scope, todoStorage) {
         todoStorage.removeAll();
     }
 
-    $scope.toggleCompleted = function() {
+    $scope.toggleCompleted = function(todo) {
+        todo.status = 'completed';
+        todo.completed = 'true';
         todoStorage.sync();
     }
     
@@ -47,15 +49,20 @@ angular.module('app').controller('todoCtrl', function ($scope, todoStorage) {
         $scope.newContent = todo.content;
         $scope.newContentStartDt = todo.startDt;
         $scope.newContentEndDt = todo.endDt;
+        
     }
     
     $scope.startTask = function(todo) {
         //This is to change status to stared!
         todo.status='start';
+        todo.completed = 'false';
+        todoStorage.sync();
     }
     
     $scope.pauseTask = function(todo) {
         todo.status='pause';
+        todo.completed = 'false';
+        todoStorage.sync();
     }
 
 });

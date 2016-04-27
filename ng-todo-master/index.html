@@ -9,39 +9,54 @@
 </head>
 <body ng-controller='todoCtrl' height='500' width='300'>
     <div class='container'>
-
         <div class='row'>
             <div class='col-md-12'>
                 <h5>{{ (todoList | filter: {completed:false}).length}} pending task(s)</h5>
                 <form id='todo-form' ng-submit='save()'>
                     <div class="form-group">
-                        <input type='text' id='taskId' ng-model='taskId'>
-                        <input type='text' id='new-todo' ng-model='newContent' class="form-control" placeholder="What you need to do?"/>
-                        <input type='text' id='new-todo-startDt' ng-model='newContentStartDt' class="form-control" placeholder="When to start?"/>
-                        <input type='text' id='new-todo-startTm' class="form-control"/>
-                        <input type='text' id='new-todo-endDt' ng-model='newContentEndDt' class="form-control" placeholder="When to end?"/>
-                        <input type='submit' value="Save">
+                        <table>
+                            <tr>
+                                <td>{{taskId}}</td>
+                                <td colspan="3"><input type='text' id='new-todo' ng-model='newContent' class="form-control" placeholder="What you need to do?"/></td>
+                                <td><input type='text' id='new-todo-startDt' ng-model='newContentStartDt' class="form-control" placeholder="When to start?"/></td>
+                                <td><input type='text' id='new-todo-endDt' ng-model='newContentEndDt' class="form-control" placeholder="When to end?"/></td>
+                                <td><input type='submit' value="Save"></td>
+                            </tr>
+                        </table>
                     </div>
                 </form>
             </div>
         </div>
 
-        <div class='row' id="todo-list">
-            <div class='todo-item col-md-12' ng-repeat='todo in todoList track by todo.id| orderBy: createdAt' ng-class='{completed: todo.completed}'>
-                <input type='checkbox' ng-model='todo.completed' ng-click='toggleCompleted()'/>
-                <span class='todo-content'>{{todo.content}}</span>
-                <span class='todo-content'>{{todo.startDt}}</span>
-                <span class='todo-content'>{{todo.endDt}}</span>
-                <span class='todo-content'>{{todo.status}}</span>
-                <span class='todo-content'>{{todo.createdAt}}</span>
-                <input type='button' value="Edit" ng-click='edit(todo)'/>
-                <input type='button' value="Start" ng-click='startTask(todo)'/>
-                <input type='button' value="Pause" ng-click='pauseTask(todo)'/>
-                
-                <a class='btn-remove-todo pull-right' ng-click='remove(todo)'><i class='glyphicon glyphicon-remove'></i> </a>
-            </div>
+        <div class='row' id="todo-list-table">
+            <table border="1">
+                <tr>
+                    <th style="width:50%">Task</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Status</th>
+                    <th>Created Date</th>
+                    <th>Actions</th>
+                </tr>
+                <tr ng-repeat='todo in todoList track by todo.id| orderBy: createdAt'>
+                    <td><span class='todo-content'>{{todo.content}}</span></td>
+                    <td><span class='todo-content'>{{todo.startDt}}</span></td>
+                    <td><span class='todo-content'>{{todo.endDt}}</span></td>
+                    <td><span class='todo-content'>{{todo.status}}</span></td>
+                    <td><span class='todo-content'>{{todo.createdAt}}</span></td>
+                    
+                    <td>
+                        <input type='button' value="Edit" ng-click='edit(todo)' class="btn btn-sm"/>
+                        <input type='button' value="Start" ng-click='startTask(todo)' class="btn btn-sm"/>
+                        <input type='button' value="Pause" ng-click='pauseTask(todo)' class="btn btn-sm"/>
+                        <input type='button' value="Complete" ng-click='toggleCompleted(todo)' class="btn btn-sm"/>
+                        <a class='btn-remove-todo pull-right' ng-click='remove(todo)'><i class='glyphicon glyphicon-remove'></i> </a>
+                    </td>
+                    
+                </tr>
+            </table>
         </div>
-
+        
         <div class='row'>
             <div class='col-md-12'>
                 <div id='toolbar'>
