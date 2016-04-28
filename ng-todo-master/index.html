@@ -29,31 +29,33 @@
         </div>
 
         <div class='row' id="todo-list-table">
-            <table border="1">
-                <tr>
-                    <th style="width:50%">Task</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Status</th>
-                    <th>Created Date</th>
-                    <th>Actions</th>
-                </tr>
-                <tr ng-repeat='todo in todoList track by todo.id| orderBy: createdAt'>
-                    <td><span class='todo-content'>{{todo.content}}</span></td>
-                    <td><span class='todo-content'>{{todo.startDt}}</span></td>
-                    <td><span class='todo-content'>{{todo.endDt}}</span></td>
-                    <td><span class='todo-content'>{{todo.status}}</span></td>
-                    <td><span class='todo-content'>{{todo.createdAt}}</span></td>
-                    
-                    <td>
-                        <input type='button' value="Edit" ng-click='edit(todo)' class="btn btn-sm"/>
-                        <input type='button' value="Start" ng-click='startTask(todo)' class="btn btn-sm"/>
-                        <input type='button' value="Pause" ng-click='pauseTask(todo)' class="btn btn-sm"/>
-                        <input type='button' value="Complete" ng-click='toggleCompleted(todo)' class="btn btn-sm"/>
-                        <a class='btn-remove-todo pull-right' ng-click='remove(todo)'><i class='glyphicon glyphicon-remove'></i> </a>
-                    </td>
-                    
-                </tr>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th style="width:50%">Task</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Status</th>
+                        <th>Created Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat='todo in todoList track by todo.id| orderBy: createdAt'>
+                        <td><span class='todo-content'>{{todo.content}}</span></td>
+                        <td><span class='todo-content'>{{todo.startDt}}</span></td>
+                        <td><span class='todo-content'>{{todo.endDt}}</span></td>
+                        <td><span class='todo-content'>{{todo.status}}</span></td>
+                        <td><span class='todo-content'>{{todo.createdAt}}</span></td>
+                        <td>
+                            <input type='button' value="Edit" ng-click='edit(todo)' class="btn btn-sm"/>
+                            <input type='button' value="Start" ng-click='startTask(todo)' class="btn btn-sm"/>
+                            <input type='button' value="Pause" ng-click='pauseTask(todo)' class="btn btn-sm"/>
+                            <input type='button' value="Complete" ng-click='toggleCompleted(todo)' class="btn btn-sm"/>
+                            <a class='btn-remove-todo pull-right' ng-click='remove(todo)'><i class='glyphicon glyphicon-remove'></i> </a>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
         
