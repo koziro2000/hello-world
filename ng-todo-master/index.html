@@ -41,7 +41,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat='todo in todoList track by todo.id| orderBy: createdAt'>
+                    <tr ng-repeat="todo in todoList track by todo.id | orderBy: 'startDt'">
                         <td><span class='todo-content'>{{todo.content}}</span></td>
                         <td><span class='todo-content'>{{todo.startDt}}</span></td>
                         <td><span class='todo-content'>{{todo.endDt}}</span></td>
