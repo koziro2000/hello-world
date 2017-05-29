@@ -7,6 +7,9 @@ function Hero(game, x, y) {
 
 Hero.prototype = Object.create(Phaser.Sprite.prototype);
 Hero.prototype.constructor = Hero;
+Hero.prototype.move = function (direction) {
+    this.x += direction * 2.5;
+};
 
 PlayState.preload = function() {
     this.game.load.image('background', 'images/background.png');
@@ -46,5 +49,28 @@ window.onload = function () {
     let game = new Phaser.Game(960, 600, Phaser.AUTO, 'game');
     game.state.add('play', PlayState);
     game.state.start('play');
+};
+
+PlayState.init = function() {
+    this.game.renderer.renderSession.roundPixels = true;
+    this.keys = this.game.input.keyboard.addKeys(
+        {
+            left: Phaser.KeyCode.LEFT,
+            right: Phaser.KeyCode.RIGHT
+        }
+    );
+};
+
+PlayState.update = function() {
+    this._handleInput();
+};
+
+PlayState._handleInput = function () {
+    if (this.keys.left.isDown) {
+        this.hero.move(-1);
+    }
+    else if (this.keys.right.isDown) {
+        this.hero.move(1);
+    }
 };
 
